@@ -9,19 +9,13 @@ function findBookById(books, id) {
 }
 
 function partitionBooksByBorrowedStatus(books) {
-  let booksUnavailable = [];
-  let booksAvailable = []; 
-    books.forEach(book =>{
-      const checkBook =  book.borrows.every(check => check.returned); 
-    if(checkBook){
-      booksAvailable.push(book);
-    }else{
-      booksUnavailable.push(book);
-    }
-  });
-    const allBooks = [[...booksUnavailable], [...booksAvailable]];
-    allBooks.slice(0,10);
-    return allBooks; 
+  //check to see if books returned is false
+  let booksUnavailable = books.filter(book => (!book.borrows.every(check => check.returned)));
+  //check to see if books returned is true
+  let booksAvailable = books.filter(book => (book.borrows.every(check => check.returned)));
+  const allBooks = [[...booksUnavailable], [...booksAvailable]];
+  allBooks.slice(0,10);
+  return allBooks; 
 }
 
 function getBorrowersForBook(book, accounts) {

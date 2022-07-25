@@ -9,7 +9,6 @@ function getTotalAccountsCount(accounts) {
 }
 
 function getBooksBorrowedCount(books) {
-
   let accum = 0; 
   //go through each book and see if it is returned
   books.forEach((book) => { 
@@ -20,6 +19,12 @@ function getBooksBorrowedCount(books) {
   });
   return accum; 
 }
+
+//This is a helper function
+function highestToLowest(item){
+ return item.sort((a, b) => b.count - a.count)
+}
+
 
 function getMostCommonGenres(books) {
   let allGenres = {};
@@ -48,7 +53,7 @@ function getMostCommonGenres(books) {
   //cut to only 5 books
   return genreCount .slice(0, 5);
 }
-//Check on this
+
 function getMostPopularBooks(books) {
   let popularBooks = {};
 
@@ -69,8 +74,8 @@ function getMostPopularBooks(books) {
       'count' : value
     })
   }
-  popularCount.sort((a, b) => b.count - a.count);
-  return popularCount.slice(0, 5);
+  const sortedPeople = highestToLowest(popularCount);
+  return sortedPeople.slice(0, 5);
 }
 
 function getMostPopularAuthors(books, authors) {

@@ -49,7 +49,7 @@ function getMostCommonGenres(books) {
     }); 
   }
   //sort the numbers from highest to lowest
-  genreCount.sort((a, b) => b.count - a.count) ;
+  const sortedGenre = highestToLowest(genreCount);
   //cut to only 5 books
   return genreCount .slice(0, 5);
 }
